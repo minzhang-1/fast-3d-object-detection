@@ -101,7 +101,8 @@ Figure 3 shows visualization on several samples. The detector is able to catch a
 
 
 ## What's Next?
-
-
+$$\LaTeX code$$   (for display)
+\\[\LaTeX code\\] (also for display)
+\\(\LaTeX code\\) (for inline)
 
 

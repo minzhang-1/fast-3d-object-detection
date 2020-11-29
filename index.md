@@ -46,9 +46,20 @@ However, the commonly used SA module has one problem: they are usually multi-sca
   <em>Figure 2: Comparison between MSG of local PointNet and dilated residual block.</em>
 </p>
 
+First, instead of simply applying MLP layers on the ball queried set (local set), we can do local spatial encoding to explicitly observe the local geometric patterns thus learning complex local structures. For each of the nearest \\(K\\) points \\(\{{p_i}^1 \cdots {p_i}^k \cdots {p_i}^K \}\\) of center point \\(p_i\\), we encode as follows:
+\\[{r_i}^k = MLP(p_i \oplus {p_i}^k \oplus (p_i - {p_i}^k)  \oplus ||p_i - {p_i}^k||)\\]
+where \\(p_i\\) are the 3d coordinates. Then, we concatenate \\({r_i}^k\\) with \\({f_i}^k\\) which is the corresponding point features. In the local PointNet structure, they only concatenate the 3d coordinates with \\({f_i}^k\\). 
+
+Second, we do attentive pooling instead of max-pooling. We use a shared MLP followed by softmax to learn a unique attention score for each feature,
+\\[{s_i}^k = g(\hat f_i^k, W)\\]
+where \\(W\\) is the learnable weights. Then we do the weighted sum on the features:
+\\[{\tilde{f}_i}^k = \sum_{k=1}^{K}(\hat f_i^k \cdot {s_i}^k)\\]
+    
+Third, we stack two above process with a skip collection. The stack of above process increases the receptive field which compensates the lack of MSG.  
+
 ### Box Prediction Network
 
-The box prediction network includes a candidate generation layer and an anchor-free regression head similar to 3DSSD [[6](https://arxiv.org/abs/2002.10187)]. The candidate generation layer is a variant of SA layer. The points from F-FPS are used as initial center points and shifted under the supervision of relative locations to their instance center becoming candidate points. Then the surrounding points of each candidate point are found from the whole representation point set with a pre-defined range threshold. Next, MLP layers are applied to the concatenation of the normalized locations and semantic features. The extracted feature are fed into the anchor-free regression head. The distance \\((dist_x, dist_y, dist_z)\\) to its corresponding instance as well as the size (dl, dw, dh) and orientation of its corresponding instance are predicted for each candidate point in the anchor-free regression head. The orientation angle regression simply follow F-PointNet [[8](https://arxiv.org/abs/1711.08488)] which pre-dedines 12 equally split orientation angle bins. First, the proposal orientation is classified to know which bin itbelongs to and then regressed the residual with respect to the bin value.
+The box prediction network includes a candidate generation layer and an anchor-free regression head similar to 3DSSD [[6](https://arxiv.org/abs/2002.10187)]. The candidate generation layer is a variant of SA layer. The points from F-FPS are used as initial center points and shifted under the supervision of relative locations to their instance center becoming candidate points. Then the surrounding points of each candidate point are found from the whole representation point set with a pre-defined range threshold. Next, MLP layers are applied to the concatenation of the normalized locations and semantic features. The extracted feature are fed into the anchor-free regression head. The distance \\((dist_x, dist_y, dist_z)\\) to its corresponding instance as well as the size \\((dl, dw, dh)\\) and orientation of its corresponding instance are predicted for each candidate point in the anchor-free regression head. The orientation angle regression simply follow F-PointNet [[8](https://arxiv.org/abs/1711.08488)] which pre-dedines 12 equally split orientation angle bins. First, the proposal orientation is classified to know which bin itbelongs to and then regressed the residual with respect to the bin value.
 
 ### Loss Function (to be simplified)
 We use the same loss functions introduced in 3DSSD [[6](https://arxiv.org/abs/2002.10187)]. The total loss consists of regression loss, object classification loss, and the shifting loss.

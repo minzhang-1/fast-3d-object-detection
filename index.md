@@ -2,6 +2,9 @@
 
 Detecting 3D objects in urban environment is a fundamental and challenging problemfor motion planning in order to plan a safe route in autonomous driving. Specifically, autonomousvehicles (AVs) need to detect and track moving objects such as pedestrians, cyclists and vehicles inrealtime. Computation speed is critical. AVs carry a variety of sensors such as camera and LiDAR(Light Detection and Ranging), etc.  Recent approaches for 3D object detection either fuse RGBimage from camera and point cloud from LiDAR or use point cloud alone. Point cloud is irregularand extremely computational, but it is crucial for accurate 3D estimation compared with 2D images.Therefore, converting and utilizing point cloud data more efficiently and effectively has become theprimary problem in the detection task, which is also quite interesting and challenging for us.
 
+## Our Approach
+As a single-stage point-based method, our network is composed of three modules.
+
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for

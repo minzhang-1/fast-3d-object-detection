@@ -11,7 +11,7 @@ Detecting 3D objects in urban environment is a fundamental and challenging probl
 <center>
 
 <figure class="video_container">
-  <iframe width="500" height="377" src="https://www.youtube.com/embed/fu5a-p7QrDE" frameborder="0" allowfullscreen="true"> </iframe>
+  <iframe width="700" src="https://www.youtube.com/embed/fu5a-p7QrDE" frameborder="0" allowfullscreen="true"> </iframe>
 </figure>
 
 </center>
@@ -39,7 +39,7 @@ The Backbone takes point cloud as input, and outputs the feature representation 
 However, the commonly used SA module has one problem: they are usually multi-scale grouping (MSG) which is computational expensive. That is, after downsampling at each stage, we need to find multi-scale nearest neighbors set and then do MLP and max pooling on each set which is called local PointNet [[9](http://stanford.edu/~rqi/pointnet/)]. After that, the features of every scale are concatenated and fed into a 1d convolution layer to obtain a certain number of features. In particular, the number of points is usually quite large at the first stage which costs significant time. Therefore, we are motivated to design a more efficient point-based backbone. When designing the backbone, we are inspired by RandLA-Net [[12](https://arxiv.org/abs/1911.11236)]. The RandLA-Net [[12](https://arxiv.org/abs/1911.11236)] is a semantic segmentation method achieving state-of-the-art performances onlarge-scale point cloud, the key success of this method is its ability to handle millions of point cloud in realtime.  The main change that we conduct in the backbone is that we replace MSG of local PointNet with a Dilated Residual Block (DRB) that is adopted in RandLA-Net [[12](https://arxiv.org/abs/1911.11236)]. The comparison is shown in Fig. 2.
 
 <p align="center">
-  <img src="/fast-3d-object-detection/doc/msg.png" alt='comparison 1' width="400"> <br> 
+  <img src="/fast-3d-object-detection/doc/msg.png" alt='comparison 1' width="800"> <br> 
   <em>(a) MSG of Local PointNet</em> <br> <br>
   <img src="/fast-3d-object-detection/doc/dilated.png" alt='comparison 2'> <br>
   <em>(b) Dilated Residual Block</em> <br>

@@ -10,7 +10,7 @@ Related work or current methods introduction here, pointing out the challenges. 
 Overview of the architecture with figure. ZM
 
 <p align="center">
-  <img src="/fast-3d-object-detection/doc/pipeline.png" alt='pipeline'>
+  <img src="/fast-3d-object-detection/doc/pipeline.pdf" alt='pipeline'>
   <em>Figure 1: Architecture Overview. The input point cloud has four dimesions: (x, y, z, r). The output is bounding box and class label.</em>
 </p>
 

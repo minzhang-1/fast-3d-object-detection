@@ -12,7 +12,7 @@ Overview of the architecture with figure. ZM
 *Figure 1: Architecture Overview. The input point cloud has four dimesions: (x, y, z, r). The output is bounding box and class label.*
 
 <p align="center">
-  <img src="https://github.com/minzhang-1/fast-3d-object-detection/blob/gh-pages/doc/pipeline.png">
+  <img src="/doc/pipeline.png">
   <b>Figure 1: Architecture Overview. The input point cloud has four dimesions: (x, y, z, r). The output is bounding box and class label.</b><br>
 </p>
 

@@ -26,7 +26,7 @@ Our designed framework is a point-based single-stage object detector. We borrow 
 As a single-stage point-based method, our network will be composed of a backbone for feature learning, and box prediction network which includes a candidate generation layer and an anchor-freeprediction head. The overview of the whole framework is shown in Fig. 1.
 
 <p align="center">
-  <img src="/fast-3d-object-detection/doc/pipeline.png" alt='pipeline'> <br>
+  <img src="/fast-3d-object-detection/doc/pipeline.png" alt='pipeline' width="600"> <br>
   <em>Figure 1: Architecture Overview. The input point cloud has four dimesions: (x, y, z, r). The output is bounding box and class label.</em>
 </p>
 
@@ -37,7 +37,7 @@ The Backbone takes point cloud as input, and outputs the feature representation 
 However, the commonly used SA module has one problem: they are usually multi-scale grouping (MSG) which is computational expensive. That is, after downsampling at each stage, we need to find multi-scale nearest neighbors set and then do MLP and max pooling on each set which is called local PointNet [[8](http://stanford.edu/~rqi/pointnet/)]. After that, the features of every scale are concatenated and fed into a 1d convolution layer to obtain a certain number of features. In particular, the number of points is usually quite large at the first stage which costs significant time. Therefore, we are motivated to design a more efficient point-based backbone. When designing the backbone, we are inspired by RandLA-Net [[11](https://arxiv.org/abs/1911.11236)]. The RandLA-Net [[11](https://arxiv.org/abs/1911.11236)] is a semantic segmentation method achieving state-of-the-art performances onlarge-scale point cloud, the key success of this method is its ability to handle millions of point cloud in realtime.  The main change that we conduct in the backbone is that we replace MSG of local PointNet with a Dilated Residual Block (DRB) that is adopted in RandLA-Net [[11](https://arxiv.org/abs/1911.11236)]. The comparison is shown in Fig. 2.
 
 <p align="center">
-  <img src="/fast-3d-object-detection/doc/msg.png" alt='comparison 1' width="500"> <br>
+  <img src="/fast-3d-object-detection/doc/msg.png" alt='comparison 1' width="400"> <br>
   <em>(a) MSG of Local PointNet</em> <br>
   <img src="/fast-3d-object-detection/doc/dilated.png" alt='comparison 2'> <br>
   <em>(b) Dilated Residual Block</em> <br>

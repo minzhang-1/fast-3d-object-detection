@@ -11,7 +11,7 @@ Detecting 3D objects in urban environment is a fundamental and challenging probl
 <center>
 
 <figure class="video_container">
-  <iframe width="700" src="https://www.youtube.com/embed/fu5a-p7QrDE" frameborder="0" allowfullscreen="true"> </iframe>
+  <iframe width="700" height="577" src="https://www.youtube.com/embed/fu5a-p7QrDE" frameborder="0" allowfullscreen="true"> </iframe>
 </figure>
 
 </center>
@@ -28,7 +28,7 @@ Our designed framework is a point-based single-stage object detector. We borrow 
 As a single-stage point-based method, our network will be composed of a backbone for feature learning, and box prediction network which includes a candidate generation layer and an anchor-freeprediction head. The overview of the whole framework is shown in Fig. 1.
 
 <p align="center">
-  <img src="/fast-3d-object-detection/doc/pipeline.png" alt='pipeline' width="600"> <br>
+  <img src="/fast-3d-object-detection/doc/pipeline.png" alt='pipeline' width="1000"> <br>
   <em>Figure 1: Architecture Overview. The input point cloud has four dimesions: (x, y, z, r). The output is bounding box and class label.</em>
 </p>
 

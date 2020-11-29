@@ -14,8 +14,8 @@ Related work or current methods introduction here, pointing out the challenges. 
 Overview of the architecture with figure. ZM
 
 <p align="center">
-  <img src="/fast-3d-object-detection/doc/pipeline.png" alt='pipeline'>
-  <em>Figure 1: Architecture Overview. The input point cloud has four dimesions: (x, y, z, r). The output is bounding box and class label.</em>
+  <img src="/fast-3d-object-detection/doc/pipeline.png" alt='pipeline'> <br>
+  <em>Figure 1: Architecture Overview. The input point cloud has four dimesions: $(x, y, z, r)$. The output is bounding box and class label.</em>
 </p>
 
 ### Backbone: Multi-Scale V.S. Multi-Resolution? ZM
@@ -24,9 +24,9 @@ Illustration and figure.
 
 <p align="center">
   <img src="/fast-3d-object-detection/doc/msg.png" alt='comparison 1'> <br>
-  <em>(a) MSG of Local PointNet</em> <br>
+  <em>(a) MSG of Local PointNet</em> <br> <br>
   <img src="/fast-3d-object-detection/doc/dilated.png" alt='comparison 2'> <br>
-  <em>(b) Dilated Residual Block</em> <br>
+  <em>(b) Dilated Residual Block</em> <br> <br>
   <em>Figure 2: Comparison between MSG of local PointNet and dilated residual block.</em>
 </p>
 

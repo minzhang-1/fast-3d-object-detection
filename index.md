@@ -8,11 +8,9 @@ Related work or current methods introduction here, pointing out the challenges. 
 ## The Generalization Approach
 
 Overview of the architecture with figure. ZM
-![pipeline](/doc/pipeline.png)
-*Figure 1: Architecture Overview. The input point cloud has four dimesions: (x, y, z, r). The output is bounding box and class label.*
 
 <p align="center">
-  <img src="/fast-3d-object-detection/doc/pipeline.png">
+  <img src="/fast-3d-object-detection/doc/pipeline.png" alt='pipeline'>
   <em>Figure 1: Architecture Overview. The input point cloud has four dimesions: (x, y, z, r). The output is bounding box and class label.</em>
 </p>
 
@@ -20,6 +18,13 @@ Overview of the architecture with figure. ZM
 
 Illustration and figure.
 
+<p align="center">
+  <img src="/fast-3d-object-detection/doc/msg.png" alt='comparison 1'>
+  <em>MSG of Local PointNet</em>
+  <img src="/fast-3d-object-detection/doc/dilated.png" alt='comparison 2'>
+  <em>Dilated Residual Block</em>
+  <em>Figure 2: Comparison between MSG of local PointNet and dilated residual block.</em>
+</p>
 
 ### Box Prediction Network  ZM
 

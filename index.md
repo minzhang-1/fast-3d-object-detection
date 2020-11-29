@@ -14,8 +14,8 @@ Related work or current methods introduction here, pointing out the challenges. 
 Overview of the architecture with figure. ZM
 
 <p align="center">
-  <img src="/fast-3d-object-detection/doc/pipeline.png" alt='pipeline'> <br>
-  <em>Figure 1: Architecture Overview. The input point cloud has four dimesions: $(x, y, z, r)$. The output is bounding box and class label.</em>
+  <img src="/fast-3d-object-detection/doc/pipeline.pdf" alt='pipeline'>
+  <em>Figure 1: Architecture Overview. The input point cloud has four dimesions: (x, y, z, r). The output is bounding box and class label.</em>
 </p>
 
 ### Backbone: Multi-Scale V.S. Multi-Resolution? ZM
@@ -24,9 +24,9 @@ Illustration and figure.
 
 <p align="center">
   <img src="/fast-3d-object-detection/doc/msg.png" alt='comparison 1'> <br>
-  <em>(a) MSG of Local PointNet</em> <br> <br>
+  <em>(a) MSG of Local PointNet</em> <br>
   <img src="/fast-3d-object-detection/doc/dilated.png" alt='comparison 2'> <br>
-  <em>(b) Dilated Residual Block</em> <br> <br>
+  <em>(b) Dilated Residual Block</em> <br>
   <em>Figure 2: Comparison between MSG of local PointNet and dilated residual block.</em>
 </p>
 
@@ -40,7 +40,12 @@ Illustration and figure.
 YJ table
 
 ### Qualitative Results ###
+Figure 3 shows visualization on several samples. The detector is able to catch all ground truth cars in most scenes, though sometimes there are some predictions in unlabeled area. Note that not all of those are false alarms, some of those cars are not labeled because they are far from the lidar center.
 
+<p align="center">
+  <img src="/fast-3d-object-detection/doc/viz_1.png"> <br>
+  <em>Figure 3: Visualize results on point cloud. Different rows show different views. The green boxes represent the  ground truth, while the red ones are our predictions.</em>
+</p>
 
 ## References
 

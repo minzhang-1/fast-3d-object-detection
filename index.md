@@ -44,18 +44,7 @@ However, the commonly used SA module has one problem: they are usually multi-sca
   <img src="/fast-3d-object-detection/doc/dilated.png" alt='comparison 2'> <br>
   <em>(b) Dilated Residual Block</em> <br>
   <em>Figure 2: Comparison between MSG of local PointNet and dilated residual block.</em>
-</p>
-
-First, instead of simply applying MLP layers on the ball queried set (local set), we can do local spatial encoding to explicitly observe the local geometric patterns thus learning complex local structures. For each of the nearest \\(K\\) points \\(\\{{p_i}^1 \cdots {p_i}^k \cdots {p_i}^K \\}\\) of center point \\(p_i\\), we encode as follows:
-\\[{r_i}^k = MLP(p_i \oplus {p_i}^k \oplus (p_i - {p_i}^k)  \oplus ||p_i - {p_i}^k||)\\]
-where \\(p_i\\) are the 3d coordinates. Then, we concatenate \\({r_i}^k\\) with \\({f_i}^k\\) which is the corresponding point features. In the local PointNet structure, they only concatenate the 3d coordinates with \\({f_i}^k\\). 
-
-Second, we do attentive pooling instead of max-pooling. We use a shared MLP followed by softmax to learn a unique attention score for each feature,
-\\[{s_i}^k = g(\hat f_i^k, W)\\]
-where \\(W\\) is the learnable weights. Then we do the weighted sum on the features:
-\\[{\tilde{f}_i}^k = \sum_{k=1}^{K}(\hat f_i^k \cdot {s_i}^k)\\]
-    
-Third, we stack two above process with a skip collection. The stack of above process increases the receptive field which compensates the lack of MSG.  
+</p> 
 
 ### Box Prediction Network
 

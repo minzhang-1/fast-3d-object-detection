@@ -46,7 +46,7 @@ However, the commonly used SA module has one problem: they are usually multi-sca
   <em>Figure 2: Comparison between MSG of local PointNet and dilated residual block.</em>
 </p>
 
-First, instead of simply applying MLP layers on the ball queried set (local set), we can do local spatial encoding to explicitly observe the local geometric patterns thus learning complex local structures. For each of the nearest \\(K\\) points \\(\{{p_i}^1 \cdots {p_i}^k \cdots {p_i}^K \}\\) of center point \\(p_i\\), we encode as follows:
+First, instead of simply applying MLP layers on the ball queried set (local set), we can do local spatial encoding to explicitly observe the local geometric patterns thus learning complex local structures. For each of the nearest \\(K\\) points \\(\\{{p_i}^1 \cdots {p_i}^k \cdots {p_i}^K \\}\\) of center point \\(p_i\\), we encode as follows:
 \\[{r_i}^k = MLP(p_i \oplus {p_i}^k \oplus (p_i - {p_i}^k)  \oplus ||p_i - {p_i}^k||)\\]
 where \\(p_i\\) are the 3d coordinates. Then, we concatenate \\({r_i}^k\\) with \\({f_i}^k\\) which is the corresponding point features. In the local PointNet structure, they only concatenate the 3d coordinates with \\({f_i}^k\\). 
 
@@ -116,4 +116,8 @@ $$\LaTeX code$$   (for display)
 \\[\LaTeX code\\] (also for display)
 \\(\LaTeX code\\) (for inline)
 
+```math
+x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+```
+$`E=mc^2`$
 

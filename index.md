@@ -9,10 +9,13 @@ Detecting 3D objects in urban environment is a fundamental and challenging probl
 
 **Demo:** In the following demo, we visualize the input point cloud and show the corresponding 2D view, with the ground-truth box (green) and our predictions (red) embedded. The data source of this video clip is part of the tracking benchmark of KITTI [[20](http://www.cvlibs.net/datasets/kitti/eval_tracking.php)]. The embedded video may seem small, but you can choose full screen once it's running (put your mouse on the small window, there is a full-screen-button on the bottom-right corner).
 
+<center>
+
 <figure class="video_container">
   <iframe width="500" height="377" src="https://www.youtube.com/embed/fu5a-p7QrDE" frameborder="0" allowfullscreen="true"> </iframe>
 </figure>
 
+</center>
 
 ## Introduction
 Except camera based approaches which utilize either monocular or stereo images, existing methods are divided into two groups based on input data, [[1](https://arxiv.org/abs/1902.06326), [2](https://arxiv.org/abs/1711.06396), [3](https://www.mdpi.com/1424-8220/18/10/3337/htm), [4](https://arxiv.org/abs/1812.05784), [5](https://arxiv.org/abs/2002.10187)] uses point cloudonly, [[6](https://arxiv.org/abs/1611.07759), [7](https://arxiv.org/abs/1711.08488)] fuse point cloud with RGB images. The fused model has nearly linear computation costwith respect to the number of input modalities, making realtime application infeasible. In our method, we will do object detection with LiDAR only.

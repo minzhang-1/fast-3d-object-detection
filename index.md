@@ -1,6 +1,30 @@
-## Motivation
+Detecting 3D objects in urban environment is a fundamental and challenging problemfor motion planning in order to plan a safe route in autonomous driving. Specifically, autonomousvehicles (AVs) need to detect and track moving objects such as pedestrians, cyclists and vehicles inrealtime. Computation speed is critical. AVs carry a variety of sensors such as camera and LiDAR(Light Detection and Ranging), etc.  Recent approaches for 3D object detection either fuse RGBimage from camera and point cloud from LiDAR or use point cloud alone. Point cloud is irregularand extremely computational, but it is crucial for accurate 3D estimation compared with 2D images.Therefore, converting and utilizing point cloud data more efficiently and effectively has become theprimary problem in the detection task, which is also quite interesting and challenging for us. 
 
-Detecting 3D objects in urban environment is a fundamental and challenging problemfor motion planning in order to plan a safe route in autonomous driving. Specifically, autonomousvehicles (AVs) need to detect and track moving objects such as pedestrians, cyclists and vehicles inrealtime. Computation speed is critical. AVs carry a variety of sensors such as camera and LiDAR(Light Detection and Ranging), etc.  Recent approaches for 3D object detection either fuse RGBimage from camera and point cloud from LiDAR or use point cloud alone. Point cloud is irregularand extremely computational, but it is crucial for accurate 3D estimation compared with 2D images.Therefore, converting and utilizing point cloud data more efficiently and effectively has become theprimary problem in the detection task, which is also quite interesting and challenging for us.
+Input output and video for illustration here. ZR
+
+Related work or current methods introduction here, pointing out the challenges. ZM
+
+
+## The Generalization Approach
+
+Overview of the architecture with figure. ZM
+
+### Backbone: Multi-Scale V.S. Multi-Resolution? ZM
+
+Illustration and figure.
+
+### Box Prediction Network  ZM
+
+### Loss Function  YJ
+
+## Experiments
+
+ZR vis
+YJ table
+
+
+## References
+
 
 ### Markdown
 
@@ -25,11 +49,3 @@ Syntax highlighted code block
 ```
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/minzhang-1/fast-3d-object-detection/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.

@@ -8,12 +8,18 @@ Related work or current methods introduction here, pointing out the challenges. 
 ## The Generalization Approach
 
 Overview of the architecture with figure. ZM
-![introduction](/doc/pipeline.png){:height="80%" width="80%"}
+![pipeline](/doc/pipeline.png)
 *Figure 1: Architecture Overview. The input point cloud has four dimesions: (x, y, z, r). The output is bounding box and class label.*
+
+<p align="center">
+  <img src="https://github.com/minzhang-1/fast-3d-object-detection/blob/gh-pages/doc/pipeline.png">
+  <b>Figure 1: Architecture Overview. The input point cloud has four dimesions: (x, y, z, r). The output is bounding box and class label.</b><br>
+</p>
 
 ### Backbone: Multi-Scale V.S. Multi-Resolution? ZM
 
 Illustration and figure.
+
 
 ### Box Prediction Network  ZM
 

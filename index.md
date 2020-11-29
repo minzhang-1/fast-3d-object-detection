@@ -8,7 +8,7 @@ Related work or current methods introduction here, pointing out the challenges. 
 ## The Generalization Approach
 
 Overview of the architecture with figure. ZM
-| ![introduction](/doc/pipeline.pdf) |
+| ![introduction](/doc/pipeline.png) |
 |:--:| 
 | *Figure 1: Architecture Overview. The input point cloud has four dimesions: (x, y, z, r). The output is bounding box and class label.* |
 

@@ -1,10 +1,10 @@
 Detecting 3D objects in urban environment is a fundamental and challenging problemfor motion planning in order to plan a safe route in autonomous driving. Specifically, autonomousvehicles (AVs) need to detect and track moving objects such as pedestrians, cyclists and vehicles inrealtime. Computation speed is critical. AVs carry a variety of sensors such as camera and LiDAR(Light Detection and Ranging), etc.  Recent approaches for 3D object detection either fuse RGBimage from camera and point cloud from LiDAR or use point cloud alone. Point cloud is irregularand extremely computational, but it is crucial for accurate 3D estimation compared with 2D images.Therefore, converting and utilizing point cloud data more efficiently and effectively has become theprimary problem in the detection task, which is also quite interesting and challenging for us. 
 
-<table><tr><td bgcolor=#87CEFA><font size=4 color= Black>Input:</font></td></tr></table> point cloud of the scene from the LiDAR sensor. The point cloud is a set of points in 3D space which provides a sparse representation of a 3D shape or object. Each point is composed of the 3D coordinates X, Y and Z.
+**Input:**    point cloud of the scene from the LiDAR sensor. The point cloud is a set of points in 3D space which provides a sparse representation of a 3D shape or object. Each point is composed of the 3D coordinates X, Y and Z.
 
-**Output:** 3D oriented bounding boxes for objects in the scene and the corresponding class labels. A 3D oriented box has seven parameters: 3D location of the box center, length, height and width of the box, and the yaw.
+**Output:**    3D oriented bounding boxes for objects in the scene and the corresponding class labels. A 3D oriented box has seven parameters: 3D location of the box center, length, height and width of the box, and the yaw.
 
-**Demo:**
+**Demo:** In the following demo, we visualize the input point cloud and show the corresponding 2D view, with the ground-truth box (green) and our predictions embedded. The data source of this video clip is part of the tracking benchmark of KITTI.
 
 Related work or current methods introduction here, pointing out the challenges. ZM
 
@@ -36,8 +36,10 @@ Illustration and figure.
 
 ## Experiments
 
-ZR vis
+### Quantitative Results ###
 YJ table
+
+### Qualitative Results ###
 
 
 ## References

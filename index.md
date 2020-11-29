@@ -9,7 +9,9 @@ Detecting 3D objects in urban environment is a fundamental and challenging probl
 
 **Demo:** In the following demo, we visualize the input point cloud and show the corresponding 2D view, with the ground-truth box (green) and our predictions (red) embedded. The data source of this video clip is part of the tracking benchmark of KITTI.
 
-[![](http://img.youtube.com/vi/f9Yqx8WpKfk/0.jpg)](http://www.youtube.com/watch?v=f9Yqx8WpKfk "")
+<figure class="video_container">
+  <iframe src="https://youtu.be/f9Yqx8WpKfk" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
 
 
 ## Background Introduction

@@ -1,3 +1,7 @@
 theme: jekyll-theme-time-machine
 title: [Fast 3D Object Detection]
 description: [Github pages repository for fast 3d object detection project of team Untamed]
+
+markdown: kramdown
+kramdown:
+    math_engine: katex

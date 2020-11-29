@@ -79,6 +79,7 @@ Finally, the total loss is the weighted summation of these three loss sources. H
 [formula7]
 
 ## Experiments
+
 ### Dataset ###
 We use the KITTI object detection benchmark dataset [[13](http://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d)]. It has 7481 training point clouds and 7518 testing point clouds, comprising 80256 labeled objects in total. There are mainly three types of objects: car, pedestrian and cyclist. Since the ground truth label of the testing set is not publicly available, we will follow previous papers to split the training set into 3712 training samples and 3769 validation samples. We train our model on the training samples and evaluate the performance on the validation set.
 
@@ -97,4 +98,10 @@ Figure 3 shows visualization on several samples. The detector is able to catch a
   <img src="/fast-3d-object-detection/doc/viz_1.png"> <br>
   <em>Figure 3: Visualize results on point cloud. Different rows show different views. The green boxes represent the  ground truth, while the red ones are our predictions.</em>
 </p>
+
+
+## What's Next?
+
+
+
 

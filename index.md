@@ -8,7 +8,7 @@ Related work or current methods introduction here, pointing out the challenges. 
 ## The Generalization Approach
 
 Overview of the architecture with figure. ZM
-![introduction](https://github.com/minzhang-1/fast-3d-object-detection/tree/gh-pages/doc/pipeline.png)
+![introduction](https://github.com/minzhang-1/fast-3d-object-detection/blob/gh-pages/doc/pipeline.png)
 
 ### Backbone: Multi-Scale V.S. Multi-Resolution? ZM
 

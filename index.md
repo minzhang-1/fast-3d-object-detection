@@ -19,10 +19,10 @@ Overview of the architecture with figure. ZM
 Illustration and figure.
 
 <p align="center">
-  <img src="/fast-3d-object-detection/doc/msg.png" alt='comparison 1'>
-  <em>MSG of Local PointNet</em>
-  <img src="/fast-3d-object-detection/doc/dilated.png" alt='comparison 2'>
-  <em>Dilated Residual Block</em>
+  <img src="/fast-3d-object-detection/doc/msg.png" alt='comparison 1'> <br>
+  <em>(a) MSG of Local PointNet</em> <br>
+  <img src="/fast-3d-object-detection/doc/dilated.png" alt='comparison 2'> <br>
+  <em>(b) Dilated Residual Block</em> <br>
   <em>Figure 2: Comparison between MSG of local PointNet and dilated residual block.</em>
 </p>
 

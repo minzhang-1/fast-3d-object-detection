@@ -12,8 +12,8 @@ Overview of the architecture with figure. ZM
 *Figure 1: Architecture Overview. The input point cloud has four dimesions: (x, y, z, r). The output is bounding box and class label.*
 
 <p align="center">
-  <img src="/doc/pipeline.png">
-  <b>Figure 1: Architecture Overview. The input point cloud has four dimesions: (x, y, z, r). The output is bounding box and class label.</b><br>
+  <img src="/fast-3d-object-detection/doc/pipeline.png">
+  <em>Figure 1: Architecture Overview. The input point cloud has four dimesions: (x, y, z, r). The output is bounding box and class label.</em>
 </p>
 
 ### Backbone: Multi-Scale V.S. Multi-Resolution? ZM

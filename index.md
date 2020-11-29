@@ -26,9 +26,6 @@ YJ table
 ## References
 
 
-## Our Approach
-As a single-stage point-based method, our network is composed of three modules.
-
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for

@@ -8,6 +8,7 @@ Related work or current methods introduction here, pointing out the challenges. 
 ## The Generalization Approach
 
 Overview of the architecture with figure. ZM
+![introduction]()
 
 ### Backbone: Multi-Scale V.S. Multi-Resolution? ZM
 

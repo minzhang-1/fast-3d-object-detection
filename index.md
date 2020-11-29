@@ -7,10 +7,10 @@ Detecting 3D objects in urban environment is a fundamental and challenging probl
 
 **Output:**    3D oriented bounding boxes for objects in the scene and the corresponding class labels. A 3D oriented box has seven parameters: 3D location of the box center, length, height and width of the box, and the yaw.
 
-**Demo:** In the following demo, we visualize the input point cloud and show the corresponding 2D view, with the ground-truth box (green) and our predictions (red) embedded. The data source of this video clip is part of the tracking benchmark of KITTI.
+**Demo:** In the following demo, we visualize the input point cloud and show the corresponding 2D view, with the ground-truth box (green) and our predictions (red) embedded. The data source of this video clip is part of the tracking benchmark of KITTI [[20](http://www.cvlibs.net/datasets/kitti/eval_tracking.php)].
 
 <figure class="video_container">
-  <iframe src="https://www.youtube.com/embed/qYlBoh4kS78" frameborder="0" allowfullscreen="true"> </iframe>
+  <iframe src="https://www.youtube.com/embed/fu5a-p7QrDE" frameborder="0" allowfullscreen="true"> </iframe>
 </figure>
 
 
@@ -51,6 +51,8 @@ The box prediction network includes a candidate generation layer and an anchor-f
 ### Loss Function  YJ
 
 ## Experiments
+### Dataset ###
+We use the KITTI object detection benchmark dataset [[21](http://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d)]. It has 7481 training point clouds and 7518 testing point clouds, comprising 80256 labeled objects in total. There are mainly three types of objects: car, pedestrian and cyclist. Since the ground truth label of the testing set is not publicly available, we will follow previous papers to split the training set into 3712 training samples and 3769 validation samples. We train our model on the training samples and evaluate the performance on the validation set.
 
 ### Quantitative Results ###
 YJ table

@@ -50,13 +50,44 @@ However, the commonly used SA module has one problem: they are usually multi-sca
 
 The box prediction network includes a candidate generation layer and an anchor-free regression head similar to 3DSSD [[6](https://arxiv.org/abs/2002.10187)]. The candidate generation layer is a variant of SA layer. The points from F-FPS are used as initial center points and shifted under the supervision of relative locations to their instance center becoming candidate points. Then the surrounding points of each candidate point are found from the whole representation point set with a pre-defined range threshold. Next, MLP layers are applied to the concatenation of the normalized locations and semantic features. The extracted feature are fed into the anchor-free regression head. The distance (dist_x, dist_y, dist_z) to its corresponding instance as well as the size (dl, dw, dh) and orientation of its corresponding instance are predicted for each candidate point in the anchor-free regression head. The orientation angle regression simply follow F-PointNet [[8](https://arxiv.org/abs/1711.08488)] which pre-dedines 12 equally split orientation angle bins. First, the proposal orientation is classified to know which bin itbelongs to and then regressed the residual with respect to the bin value.
 
-### Loss Function  YJ
+### Loss Function (to be simplified)
+We use the same loss functions introduced in 3DSSD [[6](https://arxiv.org/abs/2002.10187)]. The total loss consists of regression loss, object classification loss, and the shifting loss.
+
+**Regression Loss:**     Based on our design of regression head which is anchor-free, we parameterized the 3D box by its center location (cx,cy,cz), its size (h,w,l) and the heading angle θ. We predict the distance and the size of the box using the Smooth-l1 loss (Huber loss) because it is less sensitive to outliers than mean-squared error (MSE) and can prevent potential exploding gradient problem.
+For the angle prediction, we quantize the orientation space into finite number (Nangle) of bins and predict the index of bin using classification. Then a regression is used to predict the residue between the bin value and the ground truth value to compensate for the quantization error. Therefore, the angle regression loss can be expressed as
+
+[formula4]
+
+where θb and θb represent the ground truth and predicted class for angle bin, and θr and θr represent the ground truth and regressed residue values.
+
+However, only with the predictions of center, size and angle is not enough for an accurate prediction of the final box because they are calculated in three separated terms in the total loss. A good center and size location with poor angle may result in the same total loss as in the scenario with poor size but good angle predictions, which will lead to final performance degradation. Therefore, the corner loss is used to combine them together, since the position of the eight corners of a box is determined by center, size and angle jointly. It can be expressed as
+
+[formula5]
+
+where cork and coˆrk represent ground truth and the predicted location of the k-th corner.
+
+Therefore, the regression loss Lreg can be summarized as
+
+[formula6]
+
+**Object Classification Loss:**     For object class loss Lcls, the ground truth labels need to be distributed to every single point in the point cloud data. The center-ness score is used to put more weights on the candidate points closer to the center of an instance after the shifting. The classification loss is then calculated using the cross entropy loss.
+
+**Shifting Loss:**      The shifting loss Lshift corresponds to the supervised shifting operation in the candidate generation layer. We use Huber loss to reduce the distance between the predicted shifts and the residue from candidate points to the instance centers.
+
+Finally, the total loss is the weighted summation of these three loss sources. Here we need to note that, different subsets of points contribute to different loss terms. The regression loss Lreg is computed based on the Npc positive candidate points, while the object classification loss Lcls is from all the Nc candidate points. For the shifting loss, since we adopted both F-FPS and D-FPS, we only count on the Np∗ positive representative points from F-FPS.
+
+[formula7]
 
 ## Experiments
 ### Dataset ###
 We use the KITTI object detection benchmark dataset [[13](http://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d)]. It has 7481 training point clouds and 7518 testing point clouds, comprising 80256 labeled objects in total. There are mainly three types of objects: car, pedestrian and cyclist. Since the ground truth label of the testing set is not publicly available, we will follow previous papers to split the training set into 3712 training samples and 3769 validation samples. We train our model on the training samples and evaluate the performance on the validation set.
 
 ### Quantitative Results ###
+Table 1 summarizes the quantitative results evaluated on the 3D validation set for "Car". 
+Our Average Precision (AP) is very close to the PointRCNN [[11](https://arxiv.org/abs/1812.04244)] which is 2-stage in the Easy mode, 
+and is competitive in Moderate and Hard with the state-of-the-art 1-stage framework 3DSSD [[6](https://arxiv.org/abs/2002.10187)]. 
+Notably, we can achieve faster training and inference time, which is of vital significance for our real-time senario in order to give an instant feedback of the environment condition in the self-driving application.
+
 YJ table
 
 ### Qualitative Results ###

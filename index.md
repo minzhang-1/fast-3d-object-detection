@@ -96,27 +96,3 @@ Figure 3 shows visualization on several samples. The detector is able to catch a
   <em>Figure 3: Visualize results on point cloud. Different rows show different views. The green boxes represent the  ground truth, while the red ones are our predictions.</em>
 </p>
 
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).

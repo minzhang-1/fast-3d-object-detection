@@ -98,7 +98,7 @@ We use the KITTI object detection benchmark dataset [[13](http://www.cvlibs.net/
 Table 1 summarizes the quantitative results evaluated on the 3D validation set for "Car". 
 Our Average Precision (AP) is very close to the PointRCNN [[11](https://arxiv.org/abs/1812.04244)] which is 2-stage in the Easy mode, 
 and is competitive in Moderate and Hard with the state-of-the-art 1-stage framework 3DSSD [[6](https://arxiv.org/abs/2002.10187)]. 
-Notably, we can achieve faster training and inference time, which is of vital significance for our real-time senario in order to give an instant feedback of the environment condition in the self-driving application.
+Notably, we can achieve faster training and inference time, which is of vital significance for our real-time scenario in order to give an instant feedback of the environment condition in the self-driving application. For example, for a 10Hz autonomous driving system, the distance covered without perception during the inference time is around 30m/s * 0.1s = 3m, which is even longer than a mini car.
 
 YJ table
 
@@ -114,7 +114,7 @@ Figure 4 compares our model with the state of art 3DSSD. 3DSSD seems to make mor
 
 <p align="center">
   <img src="/fast-3d-object-detection/doc/viz_2.png"> <br>
-  <em>Figure 4: Comparison between 3DSSD and our model. The left size is for 3DSSD while the right side is ours.</em>
+  <em>Figure 4: Comparison between 3DSSD and our model. The left side is for 3DSSD while the right side is ours.</em>
 </p>
 
 

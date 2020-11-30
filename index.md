@@ -110,6 +110,13 @@ Figure 3 shows visualization on several samples. The detector is able to catch a
   <em>Figure 3: Visualize results on point cloud. Different rows show different views. The green boxes represent the  ground truth, while the red ones are our predictions.</em>
 </p>
 
+Figure 4 compares our model with the state of art 3DSSD. 3DSSD seems to make more proposals so that some difficult cases such as large occlusion can be captured, but it also introduces some obvious false alarms, while our results are quite clean. In this example, 3DSSD suggests that a shallow tree is a car, which is not correct.
+
+<p align="center">
+  <img src="/fast-3d-object-detection/doc/viz_2.png"> <br>
+  <em>Figure 4: Comparison between 3DSSD and our model. The left size is for 3DSSD while the right side is ours.</em>
+</p>
+
 
 ## What's Next?
 In this project, we only did some fundamental researches on the backbone design, trying to use a DRB rather than the time consuming MSG. There are many other exciting research areas except backbone design in 3D object detection. For example, the sampling method is an active research topic. FPS is usually adopted in a point-based method, however, the time complexity is \\(O(n^2)\\) which is unrealistic in a realtime application. Some deep learning based sampling methods have been proposed recently, but these methods can't generalize well so far and usually takes longer. Some researchers also try random sampling which is \\(O(1)\\), but it is not as effective as FPS. More researches will be conducted on those interesting areas.

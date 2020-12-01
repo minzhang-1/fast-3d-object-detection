@@ -113,7 +113,7 @@ and is competitive in Moderate and Hard with the state-of-the-art 1-stage framew
 Notably, we can achieve faster training and inference time, which is of vital significance for our real-time scenario in order to give an instant feedback of the environment condition in the self-driving application. For example, for a 10Hz autonomous driving system, the distance covered without perception during the inference time is around 30m/s * 0.1s = 3m, which is even longer than a mini car.
 
 | Methods | Easy AP |Moderate AP|Hard AP |Inference Time (fps) |
-| :---:   |   :---:   | :---:   | :---:   | :---:   |
+| :---:   |   :-------:   | :---:   | :---:   | :---:   |
 |Ours - 1|86.32|73.43|70.66|36|
 |Ours - 2|87.16|74.12|71.22|35|
 |Ours - 3|87.44|76.11|71.66|26|

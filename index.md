@@ -74,23 +74,32 @@ to compensate for the quantization error. Therefore, the angle regression loss c
 where \\(\theta_b\\) and \\(\hat{\theta_{b}}\\) represent the ground truth and predicted class for angle bin, 
 and \\(\theta_r\\) and \\(\hat{\theta_{r}}\\) represent the ground truth and regressed residue values.
 
-However, only with the predictions of center, size and angle is not enough for an accurate prediction of the final box because they are calculated in three separated terms in the total loss. A good center and size location with poor angle may result in the same total loss as in the scenario with poor size but good angle predictions, which will lead to final performance degradation. Therefore, the corner loss is used to combine them together, since the position of the eight corners of a box is determined by center, size and angle jointly. It can be expressed as
+However, only with the predictions of center, size and angle is not enough for an accurate prediction 
+of the final box because they are calculated in three separated terms. 
+Therefore, the corner loss is used to combine them together, since the position of the eight corners 
+of a box is determined by center, size and angle jointly. It can be expressed as
 
-[formula5]
+\\[L_{corner}=\displaystyle\sum\limits_{k=1}^8 \parallel cor_{k}-\hat{cor_{k}} \parallel\\]
 
-where cork and coˆrk represent ground truth and the predicted location of the k-th corner.
+where \\(cor_{k}\\) and \\(\hat{cor_{k}}\\) represent ground truth and the predicted location of the k-th corner.
 
-Therefore, the regression loss Lreg can be summarized as
+**Object Classification Loss:**     For object class loss \\(L_{cls}\\), the ground truth labels need to be distributed 
+to every single point in the point cloud data. The center-ness score is used to put more 
+weights on the candidate points closer to the center of an instance after the shifting. 
+The classification loss is then calculated using the cross entropy loss.
 
-[formula6]
+**Shifting Loss:**      The shifting loss Lshift corresponds to the supervised shifting operation in the 
+candidate generation layer. We use Huber loss to reduce the distance between 
+the predicted shifts and the residue from candidate points to the instance centers.
 
-**Object Classification Loss:**     For object class loss Lcls, the ground truth labels need to be distributed to every single point in the point cloud data. The center-ness score is used to put more weights on the candidate points closer to the center of an instance after the shifting. The classification loss is then calculated using the cross entropy loss.
+Finally, the total loss is the weighted summation of these three loss sources. Here we need to note that, different 
+subsets of points contribute to different loss terms. The regression loss \\(L_{reg}\\) is computed based on the 
+\\(N_{pc}\\) positive candidate points, while the object classification loss \\(L_{cls}\\) is from all the \\(N_{c}\\) candidate points. 
+For the shifting loss, since we adopted both F-FPS and D-FPS, we only count on the \\(N_{p}^\ast\\) positive representative points from F-FPS.
 
-**Shifting Loss:**      The shifting loss Lshift corresponds to the supervised shifting operation in the candidate generation layer. We use Huber loss to reduce the distance between the predicted shifts and the residue from candidate points to the instance centers.
-
-Finally, the total loss is the weighted summation of these three loss sources. Here we need to note that, different subsets of points contribute to different loss terms. The regression loss Lreg is computed based on the Npc positive candidate points, while the object classification loss Lcls is from all the Nc candidate points. For the shifting loss, since we adopted both F-FPS and D-FPS, we only count on the Np∗ positive representative points from F-FPS.
-
-[formula7]
+\\[L_{total}=\frac{1}{N_{pc}}\displaystyle\sum\limits_{i}^{N_{pc}} L_{reg}^i+
+\gamma\frac{1}{N_{c}}\displaystyle\sum\limits_{i}^{N_{c}} L_{cls}^i+
+\beta\frac{1}{N_{p}^\ast}\displaystyle\sum\limits_{i}^{N_{p}^\ast} L_{shift}^i\\]
 
 ## Experiments
 

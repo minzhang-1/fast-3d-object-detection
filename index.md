@@ -122,61 +122,61 @@ Notably, we can achieve faster training and inference time, which is of vital si
 |3DSSD|91.43|82.93|79.99|26|
 
 <p align="center"></p>
-<table>
-    <thead>
-        <tr>
-            <th>Methods</th>
-            <th>Easy AP</th>
-            <th>Moderate AP</th>
-            <th>Hard AP</th>
-            <th>Inference Time (fps)</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Ours - 1</td>
-            <td>86.32</td>
-            <td>73.43</td>
-            <td>70.66</td>
-            <td>36</td>
-        </tr>
-        <tr>
-            <td>Ours - 2</td>
-            <td>87.16</td>
-            <td>74.12</td>
-            <td>71.22</td>
-            <td>35</td>
-        </tr>
-        <tr>
-            <td>Ours - 3</td>
-            <td>87.44</td>
-            <td>76.11</td>
-            <td>71.66</td>
-            <td>26</td>
-        </tr>
-        <tr>
-            <td>Ours - 4</td>
-            <td>87.65</td>
-            <td>76.97</td>
-            <td>74.24</td>
-            <td>28</td>
-        </tr>       
-        <tr>
-            <td>PointRCNN</td>
-            <td>88.91</td>
-            <td>79.88</td>
-            <td>78.37</td>
-            <td> - </td>
-        </tr>
-        <tr>
-            <td>3DSSD</td>
-            <td>91.43</td>
-            <td>82.93</td>
-            <td>79.99</td>
-            <td>26</td>
-        </tr> 
-    </tbody>
-</table>
+    <table>
+        <thead>
+            <tr>
+                <th>Methods</th>
+                <th>Easy AP</th>
+                <th>Moderate AP</th>
+                <th>Hard AP</th>
+                <th>Inference Time (fps)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Ours - 1</td>
+                <td>86.32</td>
+                <td>73.43</td>
+                <td>70.66</td>
+                <td>36</td>
+            </tr>
+            <tr>
+                <td>Ours - 2</td>
+                <td>87.16</td>
+                <td>74.12</td>
+                <td>71.22</td>
+                <td>35</td>
+            </tr>
+            <tr>
+                <td>Ours - 3</td>
+                <td>87.44</td>
+                <td>76.11</td>
+                <td>71.66</td>
+                <td>26</td>
+            </tr>
+            <tr>
+                <td>Ours - 4</td>
+                <td>87.65</td>
+                <td>76.97</td>
+                <td>74.24</td>
+                <td>28</td>
+            </tr>       
+            <tr>
+                <td>PointRCNN</td>
+                <td>88.91</td>
+                <td>79.88</td>
+                <td>78.37</td>
+                <td> - </td>
+            </tr>
+            <tr>
+                <td>3DSSD</td>
+                <td>91.43</td>
+                <td>82.93</td>
+                <td>79.99</td>
+                <td>26</td>
+            </tr> 
+        </tbody>
+    </table>
 <p></p>
 
 

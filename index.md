@@ -121,6 +121,16 @@ Notably, we can achieve faster training and inference time, which is of vital si
 |PointRCNN|    88.91  |    79.88    |   78.37  |          -           |
 |3DSSD    |    91.43  |    82.93    |   79.99  |          26          |
 
+|:Methods:|                  AP              |||:Inference Time (fps):|
+|^^       |    Easy   |   Moderate  |   Hard   |^^                    |
+| :---:   |   :---:   |    :---:    |   :---:  |        :---:         |
+|Ours - 1 |    86.32  |    73.43    |   70.66  |          36          |
+|Ours - 2 |    87.16  |    74.12    |   71.22  |          35          |
+|Ours - 3 |    87.44  |    76.11    |   71.66  |          26          |
+|Ours - 4 |    87.65  |    76.97    |   74.24  |          28          |
+|PointRCNN|    88.91  |    79.88    |   78.37  |          -           |
+|3DSSD    |    91.43  |    82.93    |   79.99  |          26          |
+
 ### Qualitative Results ###
 Figure 3 shows visualization on several samples. The detector is able to catch all ground truth cars in most scenes, though sometimes there are some predictions in unlabeled area. Note that not all of those are false alarms, some of those cars are not labeled because they are far from the lidar center.
 

@@ -25,7 +25,7 @@ Our designed framework is a point-based single-stage object detector. We borrow 
 
 ## The Generalization Approach
 
-As a single-stage point-based method, our network will be composed of a backbone for feature learning, and box prediction network which includes a candidate generation layer and an anchor-freeprediction head. The overview of the whole framework is shown in Fig. 1.
+As a single-stage point-based method, our network will be composed of a backbone for feature learning, and box prediction network which includes a candidate generation layer and an anchor-freeprediction head. The overview of the whole framework is shown in Figure 1.
 
 <p align="center">
   <img src="/fast-3d-object-detection/doc/pipeline.png" alt='pipeline' width="1000"> <br>
@@ -36,7 +36,7 @@ As a single-stage point-based method, our network will be composed of a backbone
 
 The Backbone takes point cloud as input, and outputs the feature representation that is fed intothe box prediction network. Current state-of-the-art point-based methods such as PointRCNN [[11](https://arxiv.org/abs/1812.04244)] usually follow the architecture of PointNet++ [[10](http://stanford.edu/~rqi/pointnet2/)], which uses Set Abstraction (SA) and Feature Propagation (FP) as two basic modules, as backbones. The SA layers downsample points to gradually enlarge receptive field for better efficiency and effectiveness. The FP layers are used to upsample by broadcasting features from kept points to dropped points in the SA module. 3DSSD [[6](https://arxiv.org/abs/2002.10187)] claims that the FP module is time consuming, limiting the efficiency of the whole framework. However, without FP layer, the foreground instances’ points will only occupy 51.8% when the total point number is downsampled to 512, which means half of the points are just background points. Therefore,they design a new sampling method called Feature-FPS (F-FPS), increasing the foreground points’proportion to 76.1%. In order to not affect the classification, we still need background points, therefore they split the points into two groups, one uses the F-FPS, the other uses D-FPS. This is the so-called fusion sampling.
 
-However, the commonly used SA module has one problem: they are usually multi-scale grouping (MSG) which is computational expensive. That is, after downsampling at each stage, we need to find multi-scale nearest neighbors set and then do MLP and max pooling on each set which is called local PointNet [[9](http://stanford.edu/~rqi/pointnet/)]. After that, the features of every scale are concatenated and fed into a 1d convolution layer to obtain a certain number of features. In particular, the number of points is usually quite large at the first stage which costs significant time. Therefore, we are motivated to design a more efficient point-based backbone. When designing the backbone, we are inspired by RandLA-Net [[12](https://arxiv.org/abs/1911.11236)]. The RandLA-Net [[12](https://arxiv.org/abs/1911.11236)] is a semantic segmentation method achieving state-of-the-art performances onlarge-scale point cloud, the key success of this method is its ability to handle millions of point cloud in realtime.  The main change that we conduct in the backbone is that we replace MSG of local PointNet with a Dilated Residual Block (DRB) that is adopted in RandLA-Net [[12](https://arxiv.org/abs/1911.11236)]. The comparison is shown in Fig. 2.
+However, the commonly used SA module has one problem: they are usually multi-scale grouping (MSG) which is computational expensive. That is, after downsampling at each stage, we need to find multi-scale nearest neighbors set and then do MLP and max pooling on each set which is called local PointNet [[9](http://stanford.edu/~rqi/pointnet/)]. After that, the features of every scale are concatenated and fed into a 1d convolution layer to obtain a certain number of features. In particular, the number of points is usually quite large at the first stage which costs significant time. Therefore, we are motivated to design a more efficient point-based backbone. When designing the backbone, we are inspired by RandLA-Net [[12](https://arxiv.org/abs/1911.11236)]. The RandLA-Net [[12](https://arxiv.org/abs/1911.11236)] is a semantic segmentation method achieving state-of-the-art performances onlarge-scale point cloud, the key success of this method is its ability to handle millions of point cloud in realtime.  The main change that we conduct in the backbone is that we replace MSG of local PointNet with a Dilated Residual Block (DRB) that is adopted in RandLA-Net [[12](https://arxiv.org/abs/1911.11236)]. The comparison is shown in Figure 2.
 
 <p align="center">
   <img src="/fast-3d-object-detection/doc/msg.png" alt='comparison 1' width="700"> <br> 
@@ -107,7 +107,7 @@ For the shifting loss, since we adopted both F-FPS and D-FPS, we only count on t
 We use the KITTI object detection benchmark dataset [[13](http://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d)]. It has 7481 training point clouds and 7518 testing point clouds, comprising 80256 labeled objects in total. There are mainly three types of objects: car, pedestrian and cyclist. Since the ground truth label of the testing set is not publicly available, we will follow previous papers to split the training set into 3712 training samples and 3769 validation samples. We train our model on the training samples and evaluate the performance on the validation set.
 
 ### Quantitative Results ###
-Table 1 summarizes the quantitative results evaluated on the 3D validation set for "Car". 
+The table below summarizes the quantitative results evaluated on the 3D validation set for "Car". 
 Our Average Precision (AP) is very close to the PointRCNN [[11](https://arxiv.org/abs/1812.04244)] which is 2-stage in the Easy mode, 
 and is competitive in Moderate and Hard with the state-of-the-art 1-stage framework 3DSSD [[6](https://arxiv.org/abs/2002.10187)]. 
 We present 4 different settings for comparison with different combinations of the sampling rate and the number of neighbours in the ball query.
@@ -118,7 +118,7 @@ environment condition in the self-driving application. For example, for a 10Hz
 autonomous driving system, the distance covered without perception during the 
 inference time is around 30m/s * 0.1s = 3m, which is even longer than a mini car.
 
-| Methods | Easy AP   | Moderate AP |  Hard AP | Inference Time (fps) |
+| Methods | Easy AP (%)  | Moderate AP (%) |  Hard AP (%) | Inference Time (fps) |
 | :---:   |   :---:   |    :---:    |   :---:  |        :---:         |
 |Ours - 1 |    86.32  |    73.43    |   70.66  |          36          |
 |Ours - 2 |    87.16  |    74.12    |   71.22  |          35          |

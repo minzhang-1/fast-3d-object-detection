@@ -110,10 +110,14 @@ We use the KITTI object detection benchmark dataset [[13](http://www.cvlibs.net/
 Table 1 summarizes the quantitative results evaluated on the 3D validation set for "Car". 
 Our Average Precision (AP) is very close to the PointRCNN [[11](https://arxiv.org/abs/1812.04244)] which is 2-stage in the Easy mode, 
 and is competitive in Moderate and Hard with the state-of-the-art 1-stage framework 3DSSD [[6](https://arxiv.org/abs/2002.10187)]. 
-Notably, we can achieve faster training and inference time, which is of vital significance for our real-time scenario in order to give an instant feedback of the environment condition in the self-driving application. For example, for a 10Hz autonomous driving system, the distance covered without perception during the inference time is around 30m/s * 0.1s = 3m, which is even longer than a mini car.
+Notably, we can achieve faster training and inference time, which is of vital 
+significance for our real-time scenario in order to give an instant feedback of the 
+environment condition in the self-driving application. For example, for a 10Hz 
+autonomous driving system, the distance covered without perception during the 
+inference time is around 30m/s * 0.1s = 3m, which is even longer than a mini car.
 
-|:---:      |AP                                  | :---:                |||
-| ^^Methods | Easy      | Moderate    |  Hard    | ^^Inference Time (fps) |
+Table: Validation
+| Methods | Easy AP   | Moderate AP |  Hard AP | Inference Time (fps) |
 | :---:   |   :---:   |    :---:    |   :---:  |        :---:         |
 |Ours - 1 |    86.32  |    73.43    |   70.66  |          36          |
 |Ours - 2 |    87.16  |    74.12    |   71.22  |          35          |
@@ -122,16 +126,6 @@ Notably, we can achieve faster training and inference time, which is of vital si
 |PointRCNN|    88.91  |    79.88    |   78.37  |          -           |
 |3DSSD    |    91.43  |    82.93    |   79.99  |          26          |
 
-
-| :Methods: |                  AP              ||| :Inference Time (fps): |
-| ^^       |    Easy   |   Moderate  |   Hard   | ^^                    |
-| :---:   |   :---:   |    :---:    |   :---:  |        :---:         |
-|Ours - 1 |    86.32  |    73.43    |   70.66  |          36          |
-|Ours - 2 |    87.16  |    74.12    |   71.22  |          35          |
-|Ours - 3 |    87.44  |    76.11    |   71.66  |          26          |
-|Ours - 4 |    87.65  |    76.97    |   74.24  |          28          |
-|PointRCNN|    88.91  |    79.88    |   78.37  |          -           |
-|3DSSD    |    91.43  |    82.93    |   79.99  |          26          |
 
 ### Qualitative Results ###
 Figure 3 shows visualization on several samples. The detector is able to catch all ground truth cars in most scenes, though sometimes there are some predictions in unlabeled area. Note that not all of those are false alarms, some of those cars are not labeled because they are far from the lidar center.

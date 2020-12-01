@@ -121,7 +121,8 @@ Notably, we can achieve faster training and inference time, which is of vital si
 |PointRCNN|88.91|79.88|78.37|-|
 |3DSSD|91.43|82.93|79.99|26|
 
-<table align="center">
+<p align="center"></p>
+<table>
     <thead>
         <tr>
             <th>Methods</th>
@@ -176,6 +177,8 @@ Notably, we can achieve faster training and inference time, which is of vital si
         </tr> 
     </tbody>
 </table>
+<p></p>
+
 
 ### Qualitative Results ###
 Figure 3 shows visualization on several samples. The detector is able to catch all ground truth cars in most scenes, though sometimes there are some predictions in unlabeled area. Note that not all of those are false alarms, some of those cars are not labeled because they are far from the lidar center.

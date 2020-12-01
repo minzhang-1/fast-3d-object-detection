@@ -88,7 +88,7 @@ to every single point in the point cloud data. The center-ness score is used to 
 weights on the candidate points closer to the center of an instance after the shifting. 
 The classification loss is then calculated using the cross entropy loss.
 
-**Shifting Loss:**      The shifting loss Lshift corresponds to the supervised shifting operation in the 
+**Shifting Loss:**      The shifting loss \\(L_{shift}\\) corresponds to the supervised shifting operation in the 
 candidate generation layer. We use Huber loss to reduce the distance between 
 the predicted shifts and the residue from candidate points to the instance centers.
 

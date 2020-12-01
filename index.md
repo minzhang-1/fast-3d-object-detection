@@ -116,7 +116,7 @@ environment condition in the self-driving application. For example, for a 10Hz
 autonomous driving system, the distance covered without perception during the 
 inference time is around 30m/s * 0.1s = 3m, which is even longer than a mini car.
 
-Table: Validation
+Table: (\#tab:tab-comp) Validation 
 
 | Methods | Easy AP   | Moderate AP |  Hard AP | Inference Time (fps) |
 | :---:   |   :---:   |    :---:    |   :---:  |        :---:         |

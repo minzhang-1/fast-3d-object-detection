@@ -61,15 +61,18 @@ Third, we stack two above process with a skip collection. The stack of above pro
 
 The box prediction network includes a candidate generation layer and an anchor-free regression head similar to 3DSSD [[6](https://arxiv.org/abs/2002.10187)]. The candidate generation layer is a variant of SA layer. The points from F-FPS are used as initial center points and shifted under the supervision of relative locations to their instance center becoming candidate points. Then the surrounding points of each candidate point are found from the whole representation point set with a pre-defined range threshold. Next, MLP layers are applied to the concatenation of the normalized locations and semantic features. The extracted feature are fed into the anchor-free regression head. The distance \\((dist_x, dist_y, dist_z)\\) to its corresponding instance as well as the size \\((d_l, d_w, d_h)\\) and orientation of its corresponding instance are predicted for each candidate point in the anchor-free regression head. The orientation angle regression simply follow F-PointNet [[8](https://arxiv.org/abs/1711.08488)] which pre-dedines 12 equally split orientation angle bins. First, the proposal orientation is classified to know which bin itbelongs to and then regressed the residual with respect to the bin value.
 
-### Loss Function (to be simplified)
+### Loss Function
 We use the same loss functions introduced in 3DSSD [[6](https://arxiv.org/abs/2002.10187)]. The total loss consists of regression loss, object classification loss, and the shifting loss.
 
-**Regression Loss:**     Based on our design of regression head which is anchor-free, we parameterized the 3D box by its center location (cx,cy,cz), its size (h,w,l) and the heading angle θ. We predict the distance and the size of the box using the Smooth-l1 loss (Huber loss) because it is less sensitive to outliers than mean-squared error (MSE) and can prevent potential exploding gradient problem.
-For the angle prediction, we quantize the orientation space into finite number (Nangle) of bins and predict the index of bin using classification. Then a regression is used to predict the residue between the bin value and the ground truth value to compensate for the quantization error. Therefore, the angle regression loss can be expressed as
-
-[formula4]
-
-where θb and θb represent the ground truth and predicted class for angle bin, and θr and θr represent the ground truth and regressed residue values.
+**Regression Loss:**    Four different components are included in the regression loss: the distance loss, the size loss, the angle loss and the corner loss.
+Huber loss is used for all the regression part since it is less sensitive to MSE and can prevent potential exploding gradient problem.
+Specifically, in the angle prediction, we quantize the orientation space into finite number (\\(N_{angle}\\)) of bins 
+and predict the index of bin using classification. 
+Then a regression is used to predict the residue between the bin value and the ground truth value 
+to compensate for the quantization error. Therefore, the angle regression loss can be expressed as
+\\[L_{\theta}=L_{cls_a}(\theta_{b},\hat{\theta_b})+L_{reg_a}(\theta_r,\hat{\theta_{r}})\\]
+where \\(\theta_b\\) and \\(\hat{\theta_{b}}\\) represent the ground truth and predicted class for angle bin, 
+and \\(\theta_r\\) and \\(\hat{\theta_{r}}\\) represent the ground truth and regressed residue values.
 
 However, only with the predictions of center, size and angle is not enough for an accurate prediction of the final box because they are calculated in three separated terms in the total loss. A good center and size location with poor angle may result in the same total loss as in the scenario with poor size but good angle predictions, which will lead to final performance degradation. Therefore, the corner loss is used to combine them together, since the position of the eight corners of a box is determined by center, size and angle jointly. It can be expressed as
 

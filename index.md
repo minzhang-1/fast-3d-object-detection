@@ -121,8 +121,8 @@ Notably, we can achieve faster training and inference time, which is of vital si
 |PointRCNN|    88.91  |    79.88    |   78.37  |          -           |
 |3DSSD    |    91.43  |    82.93    |   79.99  |          26          |
 
-|:Methods:|                  AP              |||:Inference Time (fps):|
-|^^       |    Easy   |   Moderate  |   Hard   |^^                    |
+| :Methods: |                  AP              ||| :Inference Time (fps): |
+| ^^       |    Easy   |   Moderate  |   Hard   | ^^                    |
 | :---:   |   :---:   |    :---:    |   :---:  |        :---:         |
 |Ours - 1 |    86.32  |    73.43    |   70.66  |          36          |
 |Ours - 2 |    87.16  |    74.12    |   71.22  |          35          |

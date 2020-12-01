@@ -117,6 +117,7 @@ autonomous driving system, the distance covered without perception during the
 inference time is around 30m/s * 0.1s = 3m, which is even longer than a mini car.
 
 Table: Validation
+
 | Methods | Easy AP   | Moderate AP |  Hard AP | Inference Time (fps) |
 | :---:   |   :---:   |    :---:    |   :---:  |        :---:         |
 |Ours - 1 |    86.32  |    73.43    |   70.66  |          36          |

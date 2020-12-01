@@ -1,10 +1,5 @@
 ## Motivation
-Detecting 3D objects in urban environment is a fundamental and challenging problem for motion planning in order to plan a safe route in autonomous driving. Specifically, autonomous vehicles (AVs) need to detect and track moving objects such as pedestrians, cyclists and vehicles in real time. Therefore, the computation speed is critical. 
-AVs carry a variety of sensors such as camera and LiDAR (Light Detection and Ranging), etc.  
-Recent approaches for 3D object detection either fuse RGB image from camera and point cloud from LiDAR or use point cloud alone. 
-Point cloud is irregular and extremely computational, but it is crucial for accurate 3D estimation compared with 2D images. 
-Therefore, converting and utilizing point cloud data more efficiently and effectively has become the primary problem in the detection task, 
-which is also quite interesting and challenging for us. 
+Detecting 3D objects in urban environment is a fundamental and challenging problem for motion planning in order to plan a safe route in autonomous driving. Specifically, autonomous vehicles (AVs) need to detect and track moving objects such as pedestrians, cyclists and vehicles in real time. Therefore, the computation speed is critical. AVs carry a variety of sensors such as camera and LiDAR (Light Detection and Ranging), etc. Recent approaches for 3D object detection either fuse RGB image from camera and point cloud from LiDAR or use point cloud alone. Point cloud is irregular and extremely computational, but it is crucial for accurate 3D estimation compared with 2D images.  Therefore, converting and utilizing point cloud data more efficiently and effectively has become the primary problem in the detection task, which is also quite interesting and challenging for us. 
 
 ## Problem Formulation
 
@@ -69,42 +64,21 @@ The box prediction network includes a candidate generation layer and an anchor-f
 ### Loss Function
 We use the same loss functions introduced in 3DSSD [[6](https://arxiv.org/abs/2002.10187)]. The total loss consists of regression loss, object classification loss, and the shifting loss.
 
-**Regression Loss:**    Four different components are included in the regression loss: the distance loss, the size loss, the angle loss and the corner loss.
-Huber loss is used for all the regression part since it is less sensitive to MSE and can prevent potential exploding gradient problem.
-Specifically, in the angle prediction, we quantize the orientation space into finite number (\\(N_{angle}\\)) of bins 
-and predict the index of bin using classification. 
-Then a regression is used to predict the residue between the bin value and the ground truth value 
-to compensate for the quantization error. Therefore, the angle regression loss can be expressed as
-\\[L_{\theta}=L_{cls_a}(\theta_{b},\hat{\theta_b})+L_{reg_a}(\theta_r,\hat{\theta_{r}})\\]
-where \\(\theta_b\\) and \\(\hat{\theta_{b}}\\) represent the ground truth and predicted class for angle bin, 
-and \\(\theta_r\\) and \\(\hat{\theta_{r}}\\) represent the ground truth and regressed residue values.
+**Regression Loss:**    Four different components are included in the regression loss: the distance loss, the size loss, the angle loss and the corner loss. Huber loss is used for all the regression part since it is less sensitive to MSE and can prevent potential exploding gradient problem. Specifically, in the angle prediction, we quantize the orientation space into finite number (\\(N_{angle}\\)) of bins and predict the index of bin using classification. Then a regression is used to predict the residue between the bin value and the ground truth value to compensate for the quantization error. Therefore, the angle regression loss can be expressed as \\[L_{\theta}=L_{cls_a}(\theta_{b},\hat{\theta_b})+L_{reg_a}(\theta_r,\hat{\theta_{r}})\\] where \\(\theta_b\\) and \\(\hat{\theta_{b}}\\) represent the ground truth and predicted class for angle bin, and \\(\theta_r\\) and \\(\hat{\theta_{r}}\\) represent the ground truth and regressed residue values.
 
-However, only with the predictions of center, size and angle is not enough for an accurate prediction 
-of the final box because they are calculated in three separated terms. 
-Therefore, the corner loss is used to combine them together, since the position of the eight corners 
-of a box is determined by center, size and angle jointly. It can be expressed as
+However, only with the predictions of center, size and angle is not enough for an accurate prediction of the final box because they are calculated in three separated terms. Therefore, the corner loss is used to combine them together, since the position of the eight corners of a box is determined by center, size and angle jointly. It can be expressed as
 
 \\[L_{corner}=\displaystyle\sum\limits_{k=1}^8 \parallel cor_{k}-\hat{cor_{k}} \parallel\\]
 
 where \\(cor_{k}\\) and \\(\hat{cor_{k}}\\) represent ground truth and the predicted location of the k-th corner.
 
-**Object Classification Loss:**     For object class loss \\(L_{cls}\\), the ground truth labels need to be distributed 
-to every single point in the point cloud data. The center-ness score is used to put more 
-weights on the candidate points closer to the center of an instance after the shifting. 
-The classification loss is then calculated using the cross entropy loss.
+**Object Classification Loss:**     For object class loss \\(L_{cls}\\), the ground truth labels need to be distributed to every single point in the point cloud data. The center-ness score is used to put more weights on the candidate points closer to the center of an instance after the shifting. The classification loss is then calculated using the cross entropy loss.
 
-**Shifting Loss:**      The shifting loss \\(L_{shift}\\) corresponds to the supervised shifting operation in the 
-candidate generation layer. We use Huber loss to reduce the distance between 
-the predicted shifts and the residue from candidate points to the instance centers.
+**Shifting Loss:**      The shifting loss \\(L_{shift}\\) corresponds to the supervised shifting operation in the candidate generation layer. We use Huber loss to reduce the distance between the predicted shifts and the residue from candidate points to the instance centers.
 
-Finally, the total loss is the weighted summation of these three loss sources. Here we need to note that, different 
-subsets of points contribute to different loss terms. The regression loss \\(L_{reg}\\) is computed based on the 
-\\(N_{pc}\\) positive candidate points, while the object classification loss \\(L_{cls}\\) is from all the \\(N_{c}\\) candidate points. 
-For the shifting loss, since we adopted both F-FPS and D-FPS, we only count on the \\(N_{p}^\ast\\) positive representative points from F-FPS.
+Finally, the total loss is the weighted summation of these three loss sources. Here we need to note that, different subsets of points contribute to different loss terms. The regression loss \\(L_{reg}\\) is computed based on the \\(N_{pc}\\) positive candidate points, while the object classification loss \\(L_{cls}\\) is from all the \\(N_{c}\\)candidate points. For the shifting loss, since we adopted both F-FPS and D-FPS, we only count on the \\(N_{p}^\ast\\) positive representative points from F-FPS.
 
-\\[L_{total}=\frac{1}{N_{pc}}\displaystyle\sum\limits_{i}^{N_{pc}} L_{reg}^i+
-\gamma\frac{1}{N_{c}}\displaystyle\sum\limits_{i}^{N_{c}} L_{cls}^i+
-\beta\frac{1}{N_{p}^\ast}\displaystyle\sum\limits_{i}^{N_{p}^\ast} L_{shift}^i\\]
+\\[L_{total}=\frac{1}{N_{pc}}\displaystyle\sum\limits_{i}^{N_{pc}} L_{reg}^i+\gamma\frac{1}{N_{c}}\displaystyle\sum\limits_{i}^{N_{c}} L_{cls}^i+\beta\frac{1}{N_{p}^\ast}\displaystyle\sum\limits_{i}^{N_{p}^\ast} L_{shift}^i\\]
 
 ## Experiments
 
@@ -112,16 +86,9 @@ For the shifting loss, since we adopted both F-FPS and D-FPS, we only count on t
 We use the KITTI object detection benchmark dataset [[13](http://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d)]. It has 7481 training point clouds and 7518 testing point clouds, comprising 80256 labeled objects in total. There are mainly three types of objects: car, pedestrian and cyclist. Since the ground truth label of the testing set is not publicly available, we will follow previous papers to split the training set into 3712 training samples and 3769 validation samples. We train our model on the training samples and evaluate the performance on the validation set.
 
 ### Quantitative Results ###
-The table below summarizes the quantitative results evaluated on the 3D validation set for "Car". 
-Our Average Precision (AP) is very close to the PointRCNN [[11](https://arxiv.org/abs/1812.04244)] which is 2-stage in the Easy mode, 
-and is competitive in Moderate and Hard with the state-of-the-art 1-stage framework 3DSSD [[6](https://arxiv.org/abs/2002.10187)]. 
-We present 4 different settings for comparison with different combinations of the sampling rate and the number of neighbours in the ball query.
+The table below summarizes the quantitative results evaluated on the 3D validation set for "Car". Our Average Precision (AP) is very close to the PointRCNN [[11](https://arxiv.org/abs/1812.04244)] which is two-stage in the Easy mode, and is competitive in Moderate and Hard with the state-of-the-art single-stage framework 3DSSD [[6](https://arxiv.org/abs/2002.10187)]. We present 4 different settings for comparison with different combinations of the sampling rate and the number of neighbours in the ball query.
 
-Notably, we can achieve faster training and inference time, which is of vital 
-significance for our real-time scenario in order to give an instant feedback of the 
-environment condition in the self-driving application. For example, for a 10Hz 
-autonomous driving system, the distance covered without perception during the 
-inference time is around 30m/s * 0.1s = 3m, which is even longer than a mini car.
+Notably, we can achieve faster training and inference time, which is of vital significance for our real-time scenario in order to give an instant feedback of the environment condition in the self-driving application. For example, for a 10Hz autonomous driving system, the distance covered without perception during the inference time is around 30m/s * 0.1s = 3m, which is even longer than a mini car.
 
 | Methods | Easy AP (%)  | Moderate AP (%) |  Hard AP (%) | Inference Time (fps) |
 | :---:   |   :---:   |    :---:    |   :---:  |        :---:         |
